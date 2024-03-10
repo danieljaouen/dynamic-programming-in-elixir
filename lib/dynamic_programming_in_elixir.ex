@@ -27,6 +27,18 @@ defmodule DynamicProgrammingInElixir do
     end
   end
 
+  defp calculate_current_path(g, source, edge) do
+    {_e, v1, _v2, cost_fn} = :digraph.edge(g, edge)
+
+    case lowest_cost_path_helper(g, source, v1) do
+      {:ok, path, cost} ->
+        {:ok, [v1 | path], cost + cost_fn.()}
+
+      {:error, msg} ->
+        {:error, msg}
+    end
+  end
+
   def lowest_cost_path_helper(g, source, sink) do
     if source == sink do
       {:ok, [], 0}
@@ -37,17 +49,7 @@ defmodule DynamicProgrammingInElixir do
         {:error, "No path from source to sink"}
       else
         in_edges
-        |> Enum.map(fn edge ->
-          {_e, v1, _v2, cost_fn} = :digraph.edge(g, edge)
-
-          case lowest_cost_path_helper(g, source, v1) do
-            {:ok, path, cost} ->
-              {:ok, [v1 | path], cost + cost_fn.()}
-
-            {:error, msg} ->
-              {:error, msg}
-          end
-        end)
+        |> Enum.map(fn edge -> calculate_current_path(g, source, edge) end)
         |> Enum.filter(fn x -> elem(x, 0) != :error end)
         |> my_min()
       end
