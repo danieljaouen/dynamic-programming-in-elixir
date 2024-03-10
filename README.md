@@ -21,3 +21,5 @@ Note: The Elixir version is currently more performant due to parallel processing
 ## License
 
 Apache License, Version 2.0
+
+Copyright © 2024, Daniel Jaouen <dcj24@cornell.edu>.
