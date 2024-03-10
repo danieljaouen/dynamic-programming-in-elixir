@@ -39,7 +39,7 @@ defmodule DynamicProgrammingInElixir do
     end
   end
 
-  def lowest_cost_path_helper(g, source, sink) do
+  defp lowest_cost_path_helper(g, source, sink) do
     if source == sink do
       {:ok, [], 0}
     else
