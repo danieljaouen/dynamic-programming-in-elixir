@@ -13,7 +13,7 @@ $ mix deps.get
 $ mix test
 ```
 
-## LFE Version
+## LFE version
 [Here.](https://github.com/danieljaouen/dynamic-programming-in-lfe)
 
 Note: The Elixir version is currently more performant due to parallel processing.
