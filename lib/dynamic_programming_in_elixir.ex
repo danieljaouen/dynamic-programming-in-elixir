@@ -21,7 +21,7 @@ defmodule DynamicProgrammingInElixir do
   """
   def my_min(lst) do
     if Enum.empty?(lst) do
-      {:error, "Empty list"}
+      {:error, "Empty list passed to my_min"}
     else
       Enum.reduce(
         lst,
