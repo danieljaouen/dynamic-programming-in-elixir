@@ -7,3 +7,6 @@ A simple dynamic programming example in Elixir.
 ```shell
 $ mix test
 ```
+
+## LFE Version
+[Here.](https://github.com/danieljaouen/dynamic-programming-in-lfe)
