@@ -2,6 +2,11 @@
 
 A simple dynamic programming example in Elixir.
 
+## Install the dependencies
+```shell
+$ mix deps.get
+```
+
 ## Run the tests
 
 ```shell
