@@ -17,3 +17,7 @@ $ mix test
 [Here.](https://github.com/danieljaouen/dynamic-programming-in-lfe)
 
 Note: The Elixir version is currently more performant due to parallel processing.
+
+## License
+
+Apache License, Version 2.0
