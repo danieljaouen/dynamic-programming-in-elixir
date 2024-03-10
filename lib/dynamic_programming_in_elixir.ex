@@ -20,7 +20,9 @@ defmodule DynamicProgrammingInElixir do
 
   """
   def my_min(lst) do
-    if !Enum.empty?(lst) do
+    if Enum.empty?(lst) do
+      {:error, "Empty list"}
+    else
       Enum.reduce(
         lst,
         hd(lst),
@@ -28,8 +30,6 @@ defmodule DynamicProgrammingInElixir do
           if elem(x, 2) < elem(acc, 2), do: x, else: acc
         end
       )
-    else
-      {:error, "Empty list"}
     end
   end
 
@@ -69,7 +69,9 @@ defmodule DynamicProgrammingInElixir do
     if !:digraph_utils.is_acyclic(g) do
       {:error, "Graph is not acyclic"}
     else
-      case lowest_cost_path_helper(g, source, sink) do
+      result = lowest_cost_path_helper(g, source, sink)
+
+      case result do
         {:ok, path, cost} ->
           {:ok, Enum.reverse(path) ++ [sink], cost}
 
