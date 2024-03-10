@@ -34,11 +34,11 @@ defmodule DynamicProgrammingInElixir do
   end
 
   defp calculate_current_path(g, source, edge) do
-    {_e, v1, _v2, cost_fn} = :digraph.edge(g, edge)
+    {_e, v1, v2, cost_fn} = :digraph.edge(g, edge)
 
     case lowest_cost_path_helper(g, source, v1) do
       {:ok, path, cost} ->
-        {:ok, [v1 | path], cost + cost_fn.()}
+        {:ok, [v2 | path], cost + cost_fn.()}
 
       {:error, msg} ->
         {:error, msg}
@@ -47,7 +47,7 @@ defmodule DynamicProgrammingInElixir do
 
   defp lowest_cost_path_helper(g, source, sink) do
     if source == sink do
-      {:ok, [], 0}
+      {:ok, [source], 0}
     else
       in_edges = :digraph.in_edges(g, sink)
 
@@ -73,7 +73,7 @@ defmodule DynamicProgrammingInElixir do
 
       case result do
         {:ok, path, cost} ->
-          {:ok, Enum.reverse(path) ++ [sink], cost}
+          {:ok, Enum.reverse(path), cost}
 
         {:error, _msg} ->
           {:error, "No path from source to sink"}
