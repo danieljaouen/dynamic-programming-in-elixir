@@ -51,7 +51,7 @@ defmodule DynamicProgrammingInElixir do
     else
       in_edges = :digraph.in_edges(g, sink)
 
-      if in_edges == [] do
+      if Enum.empty?(in_edges) do
         {:error, "Cannot reach source from current path"}
       else
         in_edges
