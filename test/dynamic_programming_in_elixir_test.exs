@@ -20,7 +20,10 @@ defmodule DynamicProgrammingInElixirTest do
     _e4 = :digraph.add_edge(g, v2, sink, DynamicProgrammingInElixir.make_cost_fn(4))
     _e5 = :digraph.add_edge(g, v3, sink, DynamicProgrammingInElixir.make_cost_fn(1))
 
-    assert DynamicProgrammingInElixir.lowest_cost_path(g, source, sink) ==
-             {:ok, [source, v1, sink], 4}
+    {time_in_microseconds, ret_val} =
+      :timer.tc(fn -> DynamicProgrammingInElixir.lowest_cost_path(g, source, sink) end)
+
+    IO.puts("Time in microseconds: #{time_in_microseconds}")
+    assert ret_val == {:ok, [source, v1, sink], 4}
   end
 end
