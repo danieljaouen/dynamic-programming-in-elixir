@@ -55,7 +55,7 @@ defmodule DynamicProgrammingInElixir do
         {:error, "Cannot reach source from current path"}
       else
         in_edges
-        |> ParallelStream.map(fn edge -> calculate_current_path(g, source, edge) end)
+        |> Enum.map(fn edge -> calculate_current_path(g, source, edge) end)
         |> Enum.filter(fn x -> elem(x, 0) == :ok end)
         |> Enum.to_list()
         |> my_min()
